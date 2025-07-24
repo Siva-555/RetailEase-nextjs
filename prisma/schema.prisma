@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum UnitType {
+  QTY
+  KG
+}
+
+model Inventory {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  product_code       String   @unique
+  product_name       String
+  product_units      UnitType
+  mrp                Float
+  sell_price         Float
+  available_quantity Int
+  sold_quantity      Int
+  modified_date      DateTime
+  modified_by        String
+  store_id           String
+
+  deleted Boolean? @default(false)
+}
+
+model Bills {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  bill_no        String  @unique
+  customer_name  String? @default("")
+  customer_phone String? @default("")
+  customer_email String? @default("")
+
+  store_id      String? @default("")
+  store_name    String? @default("")
+  store_address String? @default("")
+  pincode       String? @default("")
+  mobile_no     String? @default("")
+  gst_no        String? @default("")
+  fssai_no      String? @default("")
+
+  items          Item[]
+  subtotal       Float
+  tax            Float?   @default(0)
+  tax_percentage Float
+  total          Float
+  paid           Boolean? @default(false)
+  created_date   DateTime
+  created_by     String?  @default("")
+}
+
+type Item {
+  product_id    String
+  product_code  String
+  product_name  String
+  product_units UnitType
+  mrp           Float
+  sell_price    Float
+  quantity      Int
+  total         Float
+}
+
+model configuration {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  taxAmount     Float    @default(0)
+  lowStockValue Float    @default(0)
+  modified_date DateTime
+  modified_by   String
+  store_id      String
+}
