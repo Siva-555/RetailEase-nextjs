@@ -34,6 +34,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
         <body
           className={`${roboto.variable} ${robotoMono.variable} antialiased h-lvh w-full flex flex-col font-sans bg-gray-50`}
         >

@@ -21,7 +21,6 @@ export const metadata: Metadata = {
   description:
     "Manage your retail business with ease using RetailEase. Streamline operations, track sales, and enhance customer experience.",
   keywords: "retailease, ration shop,  inventory management, billing system, shop management, POS system",
-  
 };
 
 export default async function RootLayout({
@@ -32,6 +31,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
         <body
           className={`${roboto.variable} ${robotoMono.variable} antialiased h-lvh w-full flex flex-col font-sans bg-gray-50`}
         >
