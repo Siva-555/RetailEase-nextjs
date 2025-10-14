@@ -17,7 +17,8 @@ export async function GET() {
       total_sold_quantity: 0,
       total_bills_generated: 0,
 
-      total_low_stock_qty: 0
+      total_low_stock_qty: 0,
+      out_of_stock_products: 0,
     }
 
     // 1 - inventory
@@ -35,7 +36,9 @@ export async function GET() {
 
     products.forEach((ele)=>{
       if(ele.available_quantity>0) stats.total_available_products += 1
-      if(ele.available_quantity < (config?.lowStockValue || 10)) stats.total_low_stock_qty +=1;
+
+      if(ele.available_quantity <= 0) stats.out_of_stock_products +=1;
+      else if(ele.available_quantity < (config?.lowStockValue || 10)) stats.total_low_stock_qty +=1;
     })
 
     // 2 -  bills

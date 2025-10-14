@@ -77,7 +77,7 @@ export default function ConfigCard({
     if(data?.id){
       setConfigId(data.id);
       form.reset({
-        taxAmount: data.taxAmount || 5,
+        taxAmount: data.taxAmount ?? 5,
         lowStockValue: data.lowStockValue || 10,
       });
     }

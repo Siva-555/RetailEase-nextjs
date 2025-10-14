@@ -147,7 +147,7 @@ const Inventory = ({ rowData }: Props) => {
       <div className="flex flex-row justify-end">
         <Dialog open={addProductOpen} onOpenChange={setAddProductOpen}>
           <DialogTrigger asChild>
-            <Button>
+            <Button disabled={(rowData?.length ?? 0) > 50}>
               <LucidePlus />Add Product
               {/* <span className="hidden md:inline">Add Product</span> */}
             </Button>

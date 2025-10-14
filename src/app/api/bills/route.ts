@@ -29,6 +29,13 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
+
+    const bills_count = await prisma.bills.count({where: {store_id: body.store_id}});
+    // console.log("bills_count", bills_count);
+    if(bills_count >= 50){
+      return NextResponse.json({ error: "Bill limit reached.", type: "LIMIT_REACHED" },{ status: 403 });
+    }
+
     const itemsArray = Array.isArray(body.items) ? body.items : [body.items];
 
     for (const item of itemsArray) {

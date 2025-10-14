@@ -94,7 +94,7 @@ export default function BillingPage() {
         const data = await response.json();
         if (data?.success && data?.configuration?.id) {
           startTransitionConfig(() => {
-            setTax(data?.configuration?.taxAmount || 5);
+            setTax(data?.configuration?.taxAmount ?? 5);
           });
         }
       } catch (error) {
@@ -242,6 +242,10 @@ export default function BillingPage() {
           // setBillItems([]);
           // setCustomerInfo({ name: "", phone: "", email: "" });
         } else {
+          if(data?.type === "LIMIT_REACHED"){
+            toast.error("Bill limit reached. ",{duration: 10000});
+            return;
+          }
           console.error("Error generating bill 1:", data);
           toast.error("Error", {
             description: "Failed to generate bill",
@@ -285,7 +289,7 @@ export default function BillingPage() {
             <CardHeader>
               <CardTitle>Customer Information</CardTitle>
             </CardHeader>
-            <CardContent className=" grid grid-cols-1 md:grid-cols-2 gap-4">
+            <CardContent className=" grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div className="flex flex-col space-y-2">
                 <Label htmlFor="customerName">Name</Label>
                 <Input
@@ -341,7 +345,7 @@ export default function BillingPage() {
             <CardHeader>
               <CardTitle>Select Products</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-3 md:px-6">
               <Input
                 placeholder="Search products..."
                 value={searchTerm}
@@ -350,7 +354,7 @@ export default function BillingPage() {
               />
 
               {!isPendingProducts ? (
-                <div className="space-y-2 h-96 overflow-y-auto">
+                <div className="space-y-2 h-96 overflow-y-auto text-sm">
                   {filteredProducts.length > 0 ? (
                     filteredProducts.map((product, index) => (
                       <button
@@ -361,7 +365,7 @@ export default function BillingPage() {
                         onClick={() => addToBill(product)}
                       >
                         <div className="flex flex-col justigy-start items-start space-x-4">
-                          <h4 className="font-medium group-hover:text-blue-800 focus-within:text-blue-800 line-clamp-2">
+                          <h4 className="font-medium group-hover:text-blue-800 focus-within:text-blue-800 line-clamp-2 text-left">
                             {product.product_name}
                           </h4>
                           <div className="flex flex-col items-start space-y-2 text-sm space-x-2 group-hover:text-blue-800 focus-within:text-blue-800">
@@ -392,7 +396,7 @@ export default function BillingPage() {
                               <span className="line-through text-gray-500 text-xs">
                                 ₹{product.mrp.toFixed(2)}
                               </span>
-                              <span className="text-red-600 text-xs font-medium">
+                              <span className="text-green-600 text-xs font-medium">
                                 (
                                 {Math.round(
                                   ((product.mrp - product.sell_price) /
@@ -427,7 +431,7 @@ export default function BillingPage() {
 
         {/* Bill Summary */}
         <div className="relative overflow-x-auto">
-          <div className="sticky top-6 self-start h-fit">
+          <div className="sticky  self-start h-fit">
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center sticky top-0">

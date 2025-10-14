@@ -203,7 +203,7 @@ export default function ProductModal({
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-2">
-                    <RadioGroupItem value="KG" id="kg" />
+                    <RadioGroupItem value="KG" id="kg" disabled/>
                     <FormLabel
                       htmlFor="kg"
                       className="cursor-pointer font-[400]"
