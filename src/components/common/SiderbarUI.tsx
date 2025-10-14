@@ -9,10 +9,11 @@ import {
   IconReceiptRupee,
   IconSettings,
 } from "@tabler/icons-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 // import { cn } from "@/lib/utils";
 import { CircleUser, FileClock, ShoppingCart } from "lucide-react";
 import { SignOutButton, useUser } from "@clerk/nextjs";
+import { cn } from "@/lib/utils";
 
 export function SidebarUI() {
   const links = [
@@ -80,6 +81,7 @@ export function SidebarUI() {
   const username = user?.username;
 
   return (
+    <>
     <Sidebar open={open} setOpen={setOpen}>
       <SidebarBody className="justify-between gap-10 h-full fixed z-10">
         <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
@@ -92,7 +94,7 @@ export function SidebarUI() {
                 <SidebarLink key={idx} link={link} />
               ) : null;
             })}
-            <SignOutButton>
+            <SignOutButton redirectUrl="/">
               <SidebarLink
                 link={{
                   label: "Logout",
@@ -122,6 +124,21 @@ export function SidebarUI() {
         </div>
       </SidebarBody>
     </Sidebar>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, }}
+            animate={{ opacity: 0.4,}}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className={cn(
+              "absolute top-0 right-0 left-0 bottom-0 bg-black z-[5] w-full",
+              // "w-[calc(100%-300px)]"
+            )}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 export const Logo = () => {
