@@ -5,10 +5,10 @@ export const inventorySchema = z.object({
   product_name: z
     .string({ required_error: "Product name is required" })
     .min(1, "Product name is required")
-    .max(40)
+    .max(50)
     .regex(
-      /^[a-zA-Z0-9\s\-":]+$/,
-      'Product name can only contain letters, numbers, spaces, and - " :'
+      /^[a-zA-Z0-9\s\-.,":]+$/,
+      'Product name can only contain letters, numbers, spaces, and - " :.,'
     ),
   product_units: z.enum(["QTY", "KG"], {
     required_error: "Product unit is required",

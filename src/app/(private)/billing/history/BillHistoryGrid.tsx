@@ -88,7 +88,7 @@ const BillHistoryGrid = ({ rowData }: { rowData: Bills[] }) => {
               className: "",
               cusRenderer: (
                 <div className="flex items-center gap-2">
-                  <Badge variant={params.value ? "success" : "warningLight"}>
+                  <Badge variant={params.value ? "success" : "warningLight"} className="min-w-[65px]">
                     {params.value ? "Paid" : "Pending"}
                   </Badge>
                 </div>
