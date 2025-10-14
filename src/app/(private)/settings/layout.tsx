@@ -3,6 +3,16 @@ import { ReactNode } from "react";
 import SettingTabs from "./setting-tabs";
 import type {  TABTYPE } from "./setting-tabs";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Settings - RetailEase",
+    template: "%s | Settings - RetailEase",
+  },
+  description: "RetailEase Settings - Manage your application settings.",
+};
+
 export default function SettingsLayout({ children }: { children: ReactNode }) {
   const tabs:TABTYPE[] = [
     { name: "Configuration", href: "configuration", show: ["admin"] },

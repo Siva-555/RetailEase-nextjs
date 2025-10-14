@@ -1,6 +1,12 @@
 import React from "react";
+import type { Metadata } from "next";
 import ConfigCard from "./ConfigCard";
 import { getConfiguration } from "@/actions/configActions";
+
+export const metadata: Metadata = {
+  title: "Configuration",
+  description: "RetailEase Configuration. Manage your application settings.",
+};
 
 const ConfigurationPage = async () => {
   const { success, configuration } = await getConfiguration();
