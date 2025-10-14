@@ -22,6 +22,7 @@ export default function Dashboard() {
     total_earning: 0,
     total_sold_quantity: 0,
     total_bills_generated: 0,
+    out_of_stock_products: 0,
   });
 
   const fetchStats = async () => {
@@ -108,27 +109,6 @@ export default function Dashboard() {
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Card className="dark:bg-gray-800 dark:border-gray-700">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium dark:text-gray-200">
-                  Low Stock Items
-                </CardTitle>
-                <AlertTriangle className="size-6 text-orange-500" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-orange-500">
-                  {<CountUp end={stats.total_low_stock_qty || 0} />}
-                  {/* {stats.total_low_stock_qty} */}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <Card className="dark:bg-gray-800 dark:border-gray-700">
@@ -166,6 +146,46 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </motion.div>
+
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Card className="dark:bg-gray-800 dark:border-gray-700">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium dark:text-gray-200">
+                  Low Stock Items
+                </CardTitle>
+                <AlertTriangle className="size-6 text-orange-500" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-orange-500">
+                  {<CountUp end={stats.total_low_stock_qty || 0} />}
+                  {/* {stats.total_low_stock_qty} */}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+          {/* <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Card className="dark:bg-gray-800 dark:border-gray-700">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium dark:text-gray-200">
+                  Out of Stock 
+                </CardTitle>
+                <AlertTriangle className="size-6 text-orange-500" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-orange-500">
+                  {<CountUp end={stats.out_of_stock_products || 0} />}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div> */}
         </div>
 
         {/* Charts Section */}
