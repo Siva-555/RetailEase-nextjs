@@ -94,7 +94,7 @@ const FeatureCardSection = ({ className, items }: FeatureCardSectionProps) => {
           <AnimatePresence>
             {hoveredIndex === ind && (
               <motion.span
-                className="absolute  inset-0 h-full w-full rounded-2xl  block  bg-gray-200 z-1"
+                className="absolute  inset-0 h-full w-full rounded-2xl  block  bg-[#38c1b61a] z-1"
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{

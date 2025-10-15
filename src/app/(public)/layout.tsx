@@ -37,7 +37,7 @@ export default async function RootLayout({
         >
           <Toaster richColors />
           <ProgessProvider>
-            <main className={cn("flex flex-col flex-1 ")}>{children}</main>
+            <main className={cn("flex flex-col flex-1 max-w-[96rem] mx-auto w-full")}>{children}</main>
           </ProgessProvider>
         </body>
       </html>

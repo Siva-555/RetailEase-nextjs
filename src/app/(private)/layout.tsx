@@ -36,7 +36,7 @@ export default async function RootLayout({
       <html lang="en">
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
         <body
-          className={`${roboto.variable} ${robotoMono.variable} antialiased h-lvh w-full flex flex-col font-sans bg-gray-50`}
+          className={`${roboto.variable} ${robotoMono.variable} antialiased h-lvh w-full flex flex-col font-sans bg-gray-50 max-w-[96rem] mx-auto`}
         >
           <SignedOut>
             <Header />
@@ -48,7 +48,7 @@ export default async function RootLayout({
           <ProgessProvider
           >
             <main
-              className={cn("flex flex-col flex-1 ", userId ? "ml-0  md:ml-16 " : "")}
+              className={cn("flex flex-col flex-1  ", userId ? "ml-0  md:ml-16 " : "")}
             >
               {children}
             </main>
