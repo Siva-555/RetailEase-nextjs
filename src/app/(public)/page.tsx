@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import CountUp from "react-countup";
 
 const features = [
   {
@@ -113,6 +114,10 @@ const FeatureCardSection = ({ className, items }: FeatureCardSectionProps) => {
     </div>
   );
 };
+
+const getRandomInt = (min:number, max:number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 export default function LandingPage() {
   return (
@@ -213,7 +218,7 @@ export default function LandingPage() {
             <Link href="/dashboard">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-lg px-8 py-3"
+                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-lg px-8 py-3 shadow-[0px_14px_24px_1px_#00000036]"
               >
                 Start Managing Now
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -244,7 +249,8 @@ export default function LandingPage() {
               >
                 <Package className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  1,247
+                  
+                  {<CountUp end={getRandomInt(1115, 1300) || 1247} delay={0.8} />}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Total Products
@@ -256,7 +262,7 @@ export default function LandingPage() {
               >
                 <DollarSign className="h-12 w-12 text-green-600 dark:text-green-400 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  ₹45,230
+                  ₹{<CountUp end={getRandomInt(45000, 50000) || 45230} useIndianSeparators delay={0.8} />}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Monthly Earnings
@@ -268,7 +274,7 @@ export default function LandingPage() {
               >
                 <AlertTriangle className="h-12 w-12 text-orange-600 dark:text-orange-400 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  23
+                  {<CountUp end={getRandomInt(10, 30) || 23} delay={1} />}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Low Stock Items
