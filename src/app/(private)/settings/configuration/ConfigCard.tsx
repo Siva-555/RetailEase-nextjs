@@ -81,7 +81,7 @@ export default function ConfigCard({
         lowStockValue: data.lowStockValue || 10,
       });
     }
-  }, [data]);
+  }, [data, form]);
 
   const onSubmit = (data: ConfigSchemaType) => {
     try {

@@ -77,7 +77,7 @@ export default function OnboardingComponent() {
         fssai_no: (meta.fssai_no as string) || "",
       });
     }
-  }, [user]);
+  }, [user, form]);
 
   const onSubmit = async (data: OnboardingInput) => {
     if (isEdit) {
@@ -96,7 +96,7 @@ export default function OnboardingComponent() {
         if (res?.status === "success") {
           toast.success("Store details updated successfully!");
           await user?.reload();
-          router.push("/");
+          router.push("/dashboard");
           form.reset();
         } else if (res?.status === "error") {
           toast.error(res.message || "Failed to complete onboarding.");
