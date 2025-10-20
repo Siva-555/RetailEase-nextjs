@@ -15,8 +15,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const features = [
   {
@@ -115,48 +118,39 @@ const FeatureCardSection = ({ className, items }: FeatureCardSectionProps) => {
   );
 };
 
-const getRandomInt = (min:number, max:number) => {
+const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 export default function LandingPage() {
+  const router = useRouter();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user?.emailAddresses || user?.id) {
+      router.push("/dashboard");
+    }
+  }, [router, user?.emailAddresses, user?.id]);
+
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-gray-100 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 z-10">
-      {/*  Diagonal Cross Grid Top Background */}
-      {/* <div
-        className="fixed inset-0 -z-[1]"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, transparent 49%, #e5e7eb 49%, #e5e7eb 51%, transparent 51%),
-            linear-gradient(-45deg, transparent 49%, #e5e7eb 49%, #e5e7eb 51%, transparent 51%)
-          `,
-          backgroundSize: "40px 40px",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
-          maskImage:
-            "radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
-        }}
-      /> */}
 
-  
-  {/* Teal Glow Top */}
-  <div
-    className="fixed inset-0 z-[-1]"
-    style={{
-      background: "#ffffff",
-      backgroundImage: `
+      {/* Teal Glow Top */}
+      <div
+        className="fixed inset-0 z-[-1]"
+        style={{
+          background: "#ffffff",
+          backgroundImage: `
         radial-gradient(
           circle at top center,
           rgba(56, 193, 182, 0.5),
           transparent 70%
         )
       `,
-      filter: "blur(80px)",
-      backgroundRepeat: "no-repeat",
-    }}
-  />
-     
-
+          filter: "blur(80px)",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
 
       {/* Header */}
       <motion.header
@@ -184,16 +178,31 @@ export default function LandingPage() {
       </motion.header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-10">
         <div className="text-center">
+          {/* <motion.h1
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6"
+          >
+            Manage Your Retail Shop
+            <span className="text-blue-600 dark:text-blue-400 block">
+              Like Never Before
+            </span>
+          </motion.h1> */}
           <motion.h1
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-6xl font-bold text-gray-800 dark:text-white mb-6"
+            className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6"
           >
-            Manage Your Retail Shop
-            <span className="text-blue-600 dark:text-blue-400 block">
+            Manage Your
+            <ContainerTextFlip
+              className="ml-4"
+              words={["Retail Shop", "Inventory", "Billing", "Stock"]}
+            />
+            <span className="text-blue-600 dark:text-blue-400 block mt-1">
               Like Never Before
             </span>
           </motion.h1>
@@ -202,11 +211,12 @@ export default function LandingPage() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto"
+            className=" md:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto"
           >
-            Streamline your retail shop operations with our comprehensive
+            The smarter way to manage your entire store — from inventory and billing to insights that help your business grow.
+            {/* Streamline your retail shop operations with our comprehensive
             management system. Track inventory, Generate bills, Analyze
-            performance, and Grow your business efficiently.
+            performance, and Grow your business efficiently. */}
           </motion.p>
 
           <motion.div
@@ -249,8 +259,12 @@ export default function LandingPage() {
               >
                 <Package className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  
-                  {<CountUp end={getRandomInt(1115, 1300) || 1247} delay={0.8} />}
+                  {
+                    <CountUp
+                      end={getRandomInt(1115, 1300) || 1247}
+                      delay={0.8}
+                    />
+                  }
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Total Products
@@ -262,7 +276,14 @@ export default function LandingPage() {
               >
                 <DollarSign className="h-12 w-12 text-green-600 dark:text-green-400 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  ₹{<CountUp end={getRandomInt(45000, 50000) || 45230} useIndianSeparators delay={0.8} />}
+                  ₹
+                  {
+                    <CountUp
+                      end={getRandomInt(45000, 50000) || 45230}
+                      useIndianSeparators
+                      delay={0.8}
+                    />
+                  }
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Monthly Earnings
