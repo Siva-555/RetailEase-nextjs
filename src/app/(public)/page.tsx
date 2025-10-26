@@ -15,11 +15,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CountUp from "react-countup";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
-import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
 
 const features = [
   {
@@ -123,32 +121,22 @@ const getRandomInt = (min: number, max: number) => {
 };
 
 export default function LandingPage() {
-  const router = useRouter();
-  const { user } = useUser();
-
-  useEffect(() => {
-    if (user?.emailAddresses || user?.id) {
-      router.push("/dashboard");
-    }
-  }, [router, user?.emailAddresses, user?.id]);
 
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-gray-100 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 z-10">
 
-      {/* Teal Glow Top */}
       <div
         className="fixed inset-0 z-[-1]"
         style={{
-          background: "#ffffff",
           backgroundImage: `
-        radial-gradient(
-          circle at top center,
-          rgba(56, 193, 182, 0.5),
-          transparent 70%
-        )
-      `,
-          filter: "blur(80px)",
-          backgroundRepeat: "no-repeat",
+            linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+            linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)
+          `,
+          backgroundSize: "20px 30px",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
+          maskImage:
+            "radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
         }}
       />
 
@@ -258,14 +246,14 @@ export default function LandingPage() {
                 className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl text-center"
               >
                 <Package className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                <span className="text-2xl font-bold text-gray-800 dark:text-white">
                   {
                     <CountUp
                       end={getRandomInt(1115, 1300) || 1247}
                       delay={0.8}
                     />
                   }
-                </h3>
+                </span>
                 <p className="text-gray-600 dark:text-gray-300">
                   Total Products
                 </p>
@@ -275,7 +263,7 @@ export default function LandingPage() {
                 className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl text-center"
               >
                 <DollarSign className="h-12 w-12 text-green-600 dark:text-green-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                <span className="text-2xl font-bold text-gray-800 dark:text-white">
                   ₹
                   {
                     <CountUp
@@ -284,7 +272,7 @@ export default function LandingPage() {
                       delay={0.8}
                     />
                   }
-                </h3>
+                </span>
                 <p className="text-gray-600 dark:text-gray-300">
                   Monthly Earnings
                 </p>
@@ -294,9 +282,9 @@ export default function LandingPage() {
                 className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl text-center"
               >
                 <AlertTriangle className="h-12 w-12 text-orange-600 dark:text-orange-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                <span className="text-2xl font-bold text-gray-800 dark:text-white">
                   {<CountUp end={getRandomInt(10, 30) || 23} delay={1} />}
-                </h3>
+                </span>
                 <p className="text-gray-600 dark:text-gray-300">
                   Low Stock Items
                 </p>
