@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)", "/", "/api(.*)?",]);
 const isOnboardingRoute = createRouteMatcher(["/onboarding"]);
+const isMainRoute = createRouteMatcher(["/"]);
 
 const isModeratorRoute = createRouteMatcher(["/billing(.*)?","/settings", "/settings/user-profile",]);
 
@@ -25,6 +26,10 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
   if (userId && !sessionClaims?.metadata?.onboardingComplete && !isOnboardingRoute(req)) {
     const onboardingUrl = new URL("/onboarding", req.url);
     return NextResponse.redirect(onboardingUrl);
+  }
+
+  if(userId && isMainRoute(req)) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
   if (!isPublic && role === "moderator" && !isModeratorRoute(req)) {
