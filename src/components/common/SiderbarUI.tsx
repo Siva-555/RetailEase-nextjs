@@ -10,10 +10,10 @@ import {
   IconSettings,
 } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
-// import { cn } from "@/lib/utils";
-import { CircleUser, FileClock, ShoppingCart } from "lucide-react";
+import { FileClock, ShoppingCart } from "lucide-react";
 import { SignOutButton, useUser } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function SidebarUI() {
   const links = [
@@ -113,11 +113,10 @@ export function SidebarUI() {
               label: username || email || "User",
               href: "#",
               icon: (
-                <CircleUser
-                  className="h-7 w-7 shrink-0 rounded-full"
-                  width={50}
-                  height={50}
-                />
+                <Avatar>
+                  <AvatarImage src={user?.imageUrl} />
+                  <AvatarFallback className="bg-[#fff]">{email?.[0]?.toUpperCase()}</AvatarFallback>
+                </Avatar>
               ),
             }}
           />
