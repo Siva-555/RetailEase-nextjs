@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## RetailEase - Your Retail Management Solution
 
-## Getting Started
+RetailEase is a Nextjs based retail shop management website for small retailers. Built with a modern tech stack, it ensures an easy-to-use, visually appealing, and responsive experience.
 
-First, run the development server:
+![App Screenshot](./public/screenshots/home_page_1.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Inventory management.
+- Billing with customer information and printable invoices.
+- Dashboard with earnings and sales insights.
+- User onboarding and role-based access.
+- Settings
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Frontend:**
 
-## Learn More
+- **Next.js 15.3.3** - React framework with App Router
+- **React 19** - UI library with latest features
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Motion** - Animation library
+- **Shadcn/ui** - Pre-built components
+- **React Hook Form** - Form management with Zod validation
+- **AG Grid** - Advanced data grid for displaying, filtering, and managing tabular data efficiently
 
-To learn more about Next.js, take a look at the following resources:
+**Backend & Database:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **MongoDB + Prisma** – Database and ORM layer  
+- **Clerk** – Authentication and user management  
+- **Next.js API Routes** - Server-side endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Quickstart
 
-## Deploy on Vercel
+Prerequisites:
+- Node.js v18+  
+- npm or yarn  
+- MongoDB instance (local or cloud, e.g., MongoDB Atlas)  
+- Clerk account for authentication  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
+1. Clone the repository:
+   
+    ```bash
+    git clone https://github.com/Siva-555/RetailEase-nextjs.git
+    cd retailease
+    ```
+3. Install dependencies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npm install
+    ```
+5. Set up environment variables in .env:
+   
+   ```bash
+    DATABASE_URL="your_mongodb_connection_string"
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
+    CLERK_SECRET_KEY="your_clerk_secret_key"
+   ```
+6. Run the development server:
+   
+   ```bash
+   npm run dev
+   ```
+
+Open http://localhost:3000
+ to view the app.
