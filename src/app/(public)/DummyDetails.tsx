@@ -45,22 +45,26 @@ const DummyDetails = ({ className }: DummyDetailsProps) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <p className="text-sm text-gray-800">
-                <strong className="text-gray-900 ">Admin:</strong>{" "}
-                <span className="select-all">test@test.com </span>
-              </p>
-              <p className="text-sm text-gray-800 mb-2">
-                <strong className="text-gray-900 ">Password:</strong>{" "}
-                <span className="select-all">test@test.com</span>
-              </p>
-              <p className="text-sm text-gray-800 mt-2">
-                <strong className="text-gray-900 ">Moderator:</strong>{" "}
-                <span className="select-all">test2@test.com </span>
-              </p>
-              <p className="text-sm text-gray-800">
-                <strong className="text-gray-900 ">Password:</strong>{" "}
-                <span className="select-all">test2@test.com </span>
-              </p>
+              {viewDetails && (
+                <>
+                  <p className="text-sm text-gray-800">
+                    <strong className="text-gray-900 ">Admin:</strong>{" "}
+                    <span className="select-all">test@test.com </span>
+                  </p>
+                  <p className="text-sm text-gray-800 mb-2">
+                    <strong className="text-gray-900 ">Password:</strong>{" "}
+                    <span className="select-all">test@test.com</span>
+                  </p>
+                  <p className="text-sm text-gray-800 mt-2">
+                    <strong className="text-gray-900 ">Moderator:</strong>{" "}
+                    <span className="select-all">test2@test.com </span>
+                  </p>
+                  <p className="text-sm text-gray-800">
+                    <strong className="text-gray-900 ">Password:</strong>{" "}
+                    <span className="select-all">test2@test.com </span>
+                  </p>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}
