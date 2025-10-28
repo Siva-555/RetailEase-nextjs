@@ -66,3 +66,8 @@ Prerequisites:
 
 Open http://localhost:3000
  to view the app.
+
+## 🎥 Project Demo
+
+Watch the project demo on YouTube: [Click Here](https://youtu.be/KQUo8s27KS8)
+
