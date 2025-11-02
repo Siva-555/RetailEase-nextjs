@@ -1,4 +1,4 @@
-## RetailEase - Your Retail Management Solution
+## RetailEase - Your Retail Management Solution (A POS System)
 
 RetailEase is a Nextjs based retail shop management website for small retailers. Built with a modern tech stack, it ensures an easy-to-use, visually appealing, and responsive experience.
 

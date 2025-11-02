@@ -216,19 +216,25 @@ export default function LandingPage() {
             <Link href="/dashboard">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-lg px-8 py-3 shadow-[0px_14px_24px_1px_#00000036]"
+                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-lg  shadow-[0px_14px_24px_1px_#00000036]"
               >
                 Start Managing Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            {/* <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 py-3 bg-transparent dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            <a
+              href="https://youtu.be/KQUo8s27KS8"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Watch Demo
-            </Button> */}
+              <Button
+                size="lg"
+                variant="outline"
+                className="hover:bg-gray-50 hover:text-gray-900 shadow"
+              >
+                Watch Demo
+              </Button>
+            </a>
           </motion.div>
         </div>
 
